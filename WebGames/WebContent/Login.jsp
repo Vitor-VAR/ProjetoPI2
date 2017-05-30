@@ -20,7 +20,7 @@ body {
 }
 </style>
 		<center>
-	<h1>************* SEJA BEM VINDo *************</h1>
+	
 			<h1>************* SEJA BEM VINDO AO SITE WEB GAMES *************</h1>
 		</center> <br>
 		<h1>LOGIN USUÁRIO</h1>
