@@ -53,14 +53,14 @@
 		<input type="submit" value="Inserir" />
 		<hl> <input type="reset" value="Limpar"> <br />
 		<center>
-			<a href="ProdutoEscolha.jsp"> Menu Produto</a><br>
+			<a href="ProdutoEscolha.jsp">Menu Produto</a><br>
 		</center>
 	</form>
 
 </body>
 <style>
 body {
-	background-image: url(fundo.jpg);
+	background-image: url(/WebGames/imagens/fundo.jpg);
 	background-attachment: fixed;
 	background-size: 100%;
 	background-repeat: no-repeat;

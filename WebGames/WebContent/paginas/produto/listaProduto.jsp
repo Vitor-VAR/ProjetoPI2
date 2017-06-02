@@ -27,6 +27,7 @@
 				<td>Descrição</td>
 				<td>Valor</td>
 				<td>Quantidade</td>
+				<td>Opções</td>
 				
 			</tr>
 
@@ -35,13 +36,15 @@
 					<td><c:out value= "${produto.id}"/></td>
 					<td>${produto.nome}</td>
 					<td>${produto.genero}</td>
-					<td>${produto.platafoma}</td>
+					<td>${produto.plataforma}</td>
 					<td>${produto.descricao}</td>
 					<td>${produto.preco}</td>
 					<td>${produto.quantidade}</td>
+					
+					
 					<td><a href="/WebGames/alteraProduto?escolha=opcaoAlterar&id=${produto.id}">Alterar</a>
 					
-					<a href="/WebGames/alteraProduto?escolha=Excluir&id=${produto.id}&nome=${praduto.nome}">Excluir</a>
+					<a href="/WebGames/alteraProduto?escolha=Excluir&id=${produto.id}&nome=${produto.nome}&infoPagina=listar">Excluir</a>
 						</td>
 				</tr>
 			</c:forEach>
@@ -51,13 +54,13 @@
  		</c:if>
 		<br>
 	</div>
-	<h2>Produto excluído com sucesso: ${nome}</h2>
+	<h2> ${nome}</h2>
 
-	<a href="ProdutoEscolha.jsp">Voltar</a>
+	<a href="paginas/produto/ProdutoEscolha.jsp">Voltar</a>
 </body>
 <style>
 body {
-	background-image: url(fundo.jpg);
+	background-image: url(/WebGames/imagens/fundo.jpg);
 	background-attachment: fixed;
 	background-size: 100%;
 	background-repeat: no-repeat;

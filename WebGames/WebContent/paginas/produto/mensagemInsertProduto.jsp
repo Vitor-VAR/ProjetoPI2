@@ -4,14 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Mensagem de sucesso</title>
 </head>
 <body>
+<h2>Produto inserido com sucesso: ${produto.nome}</h2>
 
+
+	
+	<a href="paginas/produto/ProdutoEscolha.jsp">Menu Produto</a><br> <br><br><a href="paginas/produto/adicionaProduto.jsp">Inserir mais produtos</a><br>
 </body>
-		<style>
+	<style>
 body {
-	background-image: url(fundo.jpg);
+	background-image: url(/WebGames/imagens/fundo.jpg);
 	background-attachment: fixed;
 	background-size: 100%;
 	background-repeat: no-repeat;

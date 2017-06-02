@@ -7,15 +7,7 @@
 <title>Lista de Usuários</title>
 </head>
 <body>
-	<style>
-body {
-	background-image: url(fundo.jpg);
-	background-attachment: fixed;
-	background-size: 100%;
-	background-repeat: no-repeat;
-	background-color: #000;
-}
-</style>
+	
 	<h1>Lista de Usuários</h1>
 	<hr />
 	<div align="center">
@@ -46,7 +38,7 @@ body {
 					<td>${usuario.tipo}</td>
 					<td><a href="/WebGames/alteraUsuario?escolha=opcaoAlterar&id=${usuario.id}">Alterar</a>
 					
-					<a href="/WebGames/alteraUsuario?escolha=Excluir&id=${usuario.id}&nome=${usuario.nome}">Excluir</a>
+					<a href="/WebGames/alteraUsuario?escolha=Excluir&id=${usuario.id}&nome=${usuario.nome}&infoPagina=listar">Excluir</a>
 						</td>
 				</tr>
 			</c:forEach>
@@ -56,8 +48,17 @@ body {
  		</c:if>
 		<br>
 	</div>
-	<h2>Usuário excluído com sucesso: ${nome}</h2>
+	<p> ${nome}</p>
 
-	<a href="UsuarioEscolha.jsp">Voltar</a>
+	<a href="paginas/usuario/UsuarioEscolha.jsp">Voltar</a>
 </body>
+<style>
+body {
+	background-image: url(/WebGames/imagens/fundo.jpg);
+	background-attachment: fixed;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-color: #000;
+}
+</style>
 </html>

@@ -4,15 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>mensagemErroLogar</title>
+<title>Insert title here</title>
 </head>
 <body>
-<h2>Erro: Login\email incorreto ou usuário não cadastrado no banco de dados!</h2>
-<a href="Login.jsp">Voltar</a>
+
 </body>
 	<style>
 body {
-	background-image: url(fundo.jpg);
+	background-image: url(/WebGames/imagens/fundo.jpg);
 	background-attachment: fixed;
 	background-size: 100%;
 	background-repeat: no-repeat;

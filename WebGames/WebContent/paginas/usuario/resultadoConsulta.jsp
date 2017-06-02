@@ -9,6 +9,9 @@
 <body>
 <h1>Resultado da busca!!</h1>
 <hr>
+<br>
+<br>
+<br>
 <table border="1">
 			<tr>
 				<td>ID</td>
@@ -35,17 +38,24 @@
 					<td>${usuario.senha}</td>
 					<td>${usuario.tipo}</td>
 					<td><a href="/WebGames/alteraUsuario?escolha=opcaoAlterar&id=${usuario.id}">Alterar</a>
-					<a href="/WebGames/alteraUsuario?escolha=Excluir&id=${usuario.id}&nome=${usuario.nome}">Excluir</a>
+					<a href="/WebGames/alteraUsuario?escolha=Excluir&id=${usuario.id}&nome=${usuario.nome}&infoPagina=consultar">Excluir</a>
 						</td>
 				</tr>
 		</table>
 		<br>
-
-	<a href="UsuarioEscolha.jsp">Menu Usuário</a><br>
+		<br>
+<p> ${nome}</p>
+<br>
+<br>
+<br>
+<br>
+<center>
+	<a href="paginas/usuario/UsuarioEscolha.jsp">Menu Usuário</a><br>
+	</center>
 </body>
-		<style>
+	<style>
 body {
-	background-image: url(fundo.jpg);
+	background-image: url(/WebGames/imagens/fundo.jpg);
 	background-attachment: fixed;
 	background-size: 100%;
 	background-repeat: no-repeat;

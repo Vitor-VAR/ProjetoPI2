@@ -14,29 +14,29 @@
 		<br>
 		<form action="/WebGames/ProdutoEscolha" method="get">
 			<input type="hidden" name="escolha" value="opcaoInserir"> <input
-				type="submit" value="Inserir Produto">
+				type="submit" value="Inserir">
 		</form>
 		<hr>
 		<br>
 		<br>
 		<form action="/WebGames/ProdutoEscolha" method="get">
 			<input type="hidden" name="escolha" value="Listar"> <input
-				type="submit" value="Listar Produto">
+				type="submit" value="Listar">
 		</form>
 		<hr>
 		<br>
 		<br>
 		<form action="/WebGames/ProdutoEscolha" method="get">
 			<input type="hidden" name="escolha" value="Consultar"> <input
-				type="submit" value="Consultar Produto">
+				type="submit" value="Consultar">
 		</form>
 	</center>
 
 
 </body>
-		<style>
+	<style>
 body {
-	background-image: url(fundo.jpg);
+	background-image: url(/WebGames/imagens/fundo.jpg);
 	background-attachment: fixed;
 	background-size: 100%;
 	background-repeat: no-repeat;

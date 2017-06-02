@@ -17,9 +17,15 @@
 		<form action="/WebGames/alteraProduto" method="post">
 			<input type="hidden" name="acao" value="Alterar" /> <input
 				type="hidden" name="id" value="${prod.id}" />
+				
 			<li>Jogo:<br /> <input type="text" name="${prod.nome}" />
 			</li>
-			<li>Gênero:<br /> <select name="genero">
+			
+				
+			<c:choose><li>Gênero:<br /> 
+			 <select name="genero">
+			
+					<c:when test="${prod.genero.toString() eq luta}">
 					<option value="acao">Ação</option>
 					<option value="aventura">Aventura</option>
 					<option value="corrida">Corrida</option>
@@ -30,6 +36,11 @@
 					<option value="tiro">Tiro</option>
 			</select>
 			</li>
+			</c:when>
+				<c:otherwise>
+					
+				</c:otherwise>
+			</c:choose>
 			<li>Plataforma:<br /> <select name="plataforma">
 					<option value="pc">PC</option>
 					<option value="ps4">PS4</option>
@@ -53,22 +64,24 @@
 
 			<li><label for="genero">Gênero:<br />
 			</label></li>
-			<c:choose>
-				<c:when test="${prod.genero.toString() eq acao}">
-					<input type="radio" name="genero" checked="checked" value="acao" />Ação <br />
-					<input type="radio" name="genero" value="luta" />Luta<br />
-				</c:when>
-				<c:otherwise>
-					<input type="radio" name="genero" value="acao" />Luta <br />
-					<input type="radio" name="generoo" checked="checked" value="luto" />Ação<br />
-				</c:otherwise>
-			</c:choose>
+			
+					
+				
 
 			<input type="submit" value="Alterar" /> <input type="reset"
 				value="Limpar">
 		</form>
 	</ul>
-	<a href="ProdutoEscolha.jsp">Menu Produto</a>
+	<a href="paginas/produto/ProdutoEscolha.jsp">Menu Produto</a>
 
 </body>
+<style>
+body {
+	background-image: url(/WebGames/imagens/fundo.jpg);
+	background-attachment: fixed;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-color: #000;
+}
+</style>
 </html>

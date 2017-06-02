@@ -25,7 +25,7 @@
 				name="sobrenome" id="sobrenome" value="${usu.sobrenome}"/></li>
 			<li><label for="email">Email:<br /> </label><input type="text"
 				name="email" id="email" value="${usu.email}"/></li>
-			<li><label for="cpf">CPF:<br /></label> <input type="text" name="cpf"
+			<li><label for="cpf">CPF:<br /></label> <input type="number" name="cpf" min="10000000000" max="99999999999"
 				id="cpf" value="${usu.cpf}" /></li>
 			<li><label for="senha">Senha:<br /> </label><input type="text"
 				name="senha" id="senha" value="${usu.senha}"/></li>
@@ -57,4 +57,13 @@
 	<a href="UsuarioEscolha.jsp">Voltar</a>
 
 </body>
+<style>
+body {
+	background-image: url(/WebGames/imagens/fundo.jpg);
+	background-attachment: fixed;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-color: #000;
+}
+</style>
 </html>

@@ -21,8 +21,9 @@ public class UsuarioServlet extends HttpServlet {
 	}
 
 	private String acao = null;
-	private String id = null;
+	private String infoPagina = null;
 	private String escolha = null;
+	
 	Usuario usuario = new Usuario();
 	UsuarioBo usuBo = new UsuarioBo();
 
@@ -45,8 +46,9 @@ public class UsuarioServlet extends HttpServlet {
 
 			try {
 				usuBo.insertUsuarioBo(usuario);
+
 				request.setAttribute("usuario", usuario);
-				RequestDispatcher di = request.getRequestDispatcher("/UsuarioEscolha.jsp");
+				RequestDispatcher di = request.getRequestDispatcher("paginas/usuario/UsuarioEscolha.jsp");
 				di.forward(request, response);
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
@@ -78,7 +80,7 @@ public class UsuarioServlet extends HttpServlet {
 			try {
 				usuario = usuBo.selectUsuarioIdBo(Integer.parseInt(request.getParameter("id")));
 				request.setAttribute("usuario", usuario);
-				request.getRequestDispatcher("/resultadoConsulta.jsp").forward(request, response);
+				request.getRequestDispatcher("paginas/usuario/resultadoConsulta.jsp").forward(request, response);
 
 			} catch (NumberFormatException | ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
@@ -99,19 +101,20 @@ public class UsuarioServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		escolha = request.getParameter("escolha");
+		infoPagina = request.getParameter("infoPagina");
 
 		if (escolha.equals("Consultar")) {
-			response.sendRedirect("consultaUsuario.jsp");
+			response.sendRedirect("../WebGames/paginas/usuario/consultaUsuario.jsp");
 		}
 		if (escolha.equals("opcaoInserir")) {
-			response.sendRedirect("adicionaUsuario.jsp");
+			response.sendRedirect("../WebGames/paginas/usuario/adicionaUsuario.jsp");
 		}
 		if (escolha.equals("Listar")) {
 			List<Usuario> Lista = new ArrayList<>();
 			UsuarioBo usuBo = new UsuarioBo();
 			try {
 				Lista = usuBo.listaBo();
-				RequestDispatcher rd = request.getRequestDispatcher("/listaUsuario.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("paginas/usuario/listaUsuario.jsp");
 				request.setAttribute("usuarioLista", Lista);
 				rd.forward(request, response);
 			} catch (ClassNotFoundException e) {
@@ -125,7 +128,7 @@ public class UsuarioServlet extends HttpServlet {
 			try {
 				usuario = usuBo.selectUsuarioIdBo(Integer.parseInt(request.getParameter("id")));
 				request.setAttribute("usu", usuario);
-				request.getRequestDispatcher("/alteraUsuario.jsp").forward(request, response);
+				request.getRequestDispatcher("paginas/usuario/alteraUsuario.jsp").forward(request, response);
 			} catch (NumberFormatException | ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
@@ -133,12 +136,18 @@ public class UsuarioServlet extends HttpServlet {
 		if (escolha.equals("Excluir")) {
 
 			try {
+
 				usuario.setId(Integer.parseInt(request.getParameter("id")));
 				String str = request.getParameter("nome");
+				str += " foi excluído com sucesso!";
 				usuBo.deleteUsuarioBo(usuario);
 				request.setAttribute("nome", str);
-				request.getRequestDispatcher("/listaUsuario.jsp").forward(request, response);
-			
+				if (infoPagina.equals("listar")) {
+					request.getRequestDispatcher("/listaUsuario?escolha=Listar").forward(request, response);
+				} else if (infoPagina.equals("consultar")) {
+					request.getRequestDispatcher("paginas/usuario/resultadoConsulta.jsp").forward(request, response);
+
+				}
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}

@@ -35,18 +35,18 @@
 					<td>${produto.quantidade}</td>
 	
 					<td><a href="/WebGames/alteraProduto?escolha=opcaoAlterar&id=${produto.id}">Alterar</a><br>
-					<a href="/WebGames/alteraProduto?escolha=Excluir&id=${produto.id}&nome=${produto.nome}">Excluir</a>
+					<a href="/WebGames/alteraProduto?escolha=Excluir&id=${produto.id}&nome=${produto.nome}&infoPagina=consultar">Excluir</a>
 						</td>
 				</tr>
 		</table>
 		<br>
 
-	<a href="ProdutoEscolha.jsp">Menu Produto</a><br>
+	<a href="paginas/produto/ProdutoEscolha.jsp">Menu Produto</a><br>
 
 </body>
 		<style>
 body {
-	background-image: url(fundo.jpg);
+	background-image: url(/WebGames/imagens/fundo.jpg);
 	background-attachment: fixed;
 	background-size: 100%;
 	background-repeat: no-repeat;

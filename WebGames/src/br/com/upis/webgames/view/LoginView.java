@@ -39,12 +39,12 @@ public class LoginView extends HttpServlet {
 			try {
 				if (bo.autenticaLogin(usu)) {
 					request.setAttribute("email", usu);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/UsuarioEscolha.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/usuario/UsuarioEscolha.jsp");
 					dispatcher.forward(request, response);
 
 				} else {
 					System.out.println("Usuario não cadastrado no banco!");
-					response.sendRedirect("mensagemErroLogar.jsp");
+					response.sendRedirect("../WebGames/paginas/usuario/mensagemErroLogar.jsp");
 					// Colocar aqui algum tratamento de erro caso o usuário não
 					// tenha cadastro no site!
 				}
@@ -55,7 +55,7 @@ public class LoginView extends HttpServlet {
 			}
 		} else if (acao.equals("Cadastrar")) {
 
-			response.sendRedirect("/WebGames/adicionaUsuario.jsp");
+			response.sendRedirect("../WebGames/paginas/usuario/adicionaUsuario.jsp");
 
 		}
 

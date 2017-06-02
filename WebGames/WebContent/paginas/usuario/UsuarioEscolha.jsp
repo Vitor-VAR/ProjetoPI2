@@ -8,27 +8,33 @@
 </head>
 <body>
 	<center>
-		<h1>******Opções*****</h1>
+		<h1>---- Menu Usuário ----</h1>
+		<hr />
+		<br>
 		<br>
 		<form action="/WebGames/UsuarioEscolha" method="get">
 			<input type="hidden" name="escolha" value="opcaoInserir"> <input
-				type="submit" value="Inserir Usuário">
+				type="submit" value="Inserir">
 		</form>
 		<hr>
+		<br>
+		<br>
 		<form action="/WebGames/UsuarioEscolha" method="get">
 			<input type="hidden" name="escolha" value="Listar"> <input
-				type="submit" value="Listar Usuário">
+				type="submit" value="Listar">
 		</form>
 		<hr>
+		<br>
+		<br>
 		<form action="/WebGames/UsuarioEscolha" method="get">
 			<input type="hidden" name="escolha" value="Consultar"> <input
-				type="submit" value="Consultar Usuário">
+				type="submit" value="Consultar">
 		</form>
 	</center>
 </body>
 		<style>
 body {
-	background-image: url(fundo.jpg);
+	background-image: url(/WebGames/imagens/fundo.jpg);
 	background-attachment: fixed;
 	background-size: 100%;
 	background-repeat: no-repeat;

@@ -19,6 +19,7 @@ public class ProdutoServlet extends HttpServlet {
 
 	private String acao = null;
 	private String escolha = null;
+	private String infoPagina= null;
 	Produto produto = new Produto();
 	ProdutoBo prodBo = new ProdutoBo();
 
@@ -40,7 +41,7 @@ public class ProdutoServlet extends HttpServlet {
 			try {
 				prodBo.insertProdutoBo(produto);
 				request.setAttribute("produto", produto);
-				RequestDispatcher di = request.getRequestDispatcher("/mensagemInsertProduto.jsp");
+				RequestDispatcher di = request.getRequestDispatcher("paginas/produto/mensagemInsertProduto.jsp");
 				di.forward(request, response);
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
@@ -60,7 +61,7 @@ public class ProdutoServlet extends HttpServlet {
 			try {
 				prodBo.updateProdutoBo(produto);
 				request.setAttribute("produto", produto);
-				request.getRequestDispatcher("/mensagemUpdateProduto.jsp").forward(request, response);
+				request.getRequestDispatcher("paginas/produto/mensagemUpdateProduto.jsp").forward(request, response);
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
@@ -72,7 +73,7 @@ public class ProdutoServlet extends HttpServlet {
 				produto = prodBo.selectProdutoIdBo(Integer.parseInt(request.getParameter("id")));
 				System.out.println(produto.getId());
 				request.setAttribute("produto", produto);
-				request.getRequestDispatcher("/resultadoConsultaProduto.jsp").forward(request, response);
+				request.getRequestDispatcher("paginas/produto/resultadoConsultaProduto.jsp").forward(request, response);
 
 			} catch (NumberFormatException | ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
@@ -81,7 +82,7 @@ public class ProdutoServlet extends HttpServlet {
 		}
 		if (acao.equals("Voltar")) {
 			request.setAttribute("produto", produto);
-			RequestDispatcher di = request.getRequestDispatcher("/ProdutoEscolha.jsp");
+			RequestDispatcher di = request.getRequestDispatcher("paginas/produto/ProdutoEscolha.jsp");
 			di.forward(request, response);
 
 		}
@@ -93,19 +94,21 @@ public class ProdutoServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		escolha = request.getParameter("escolha");
+		infoPagina = request.getParameter("infoPagina");
+		
 
 		if (escolha.equals("Consultar")) {
-			response.sendRedirect("consultaProduto.jsp");
+			response.sendRedirect("../WebGames/paginas/produto/consultaProduto.jsp");
 		}
 		if (escolha.equals("opcaoInserir")) {
-			response.sendRedirect("adicionaProduto.jsp");
+			response.sendRedirect("../WebGames/paginas/produto/adicionaProduto.jsp");
 		}
 		if (escolha.equals("Listar")) {
 			List<Produto> Lista = new ArrayList<>();
 			ProdutoBo prodBo = new ProdutoBo();
 			try {
 				Lista = prodBo.listaBo();
-				RequestDispatcher rd = request.getRequestDispatcher("/listaProduto.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("paginas/produto/listaProduto.jsp");
 				request.setAttribute("produtoLista", Lista);
 				rd.forward(request, response);
 			} catch (ClassNotFoundException e) {
@@ -119,7 +122,7 @@ public class ProdutoServlet extends HttpServlet {
 			try {
 				produto = prodBo.selectProdutoIdBo(Integer.parseInt(request.getParameter("id")));
 				request.setAttribute("prod", produto);
-				request.getRequestDispatcher("/alteraProduto.jsp").forward(request, response);
+				request.getRequestDispatcher("paginas/produto/alteraProduto.jsp").forward(request, response);
 			} catch (NumberFormatException | ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
@@ -129,9 +132,14 @@ public class ProdutoServlet extends HttpServlet {
 			try {
 				produto.setId(Integer.parseInt(request.getParameter("id")));
 				String str = request.getParameter("nome");
+				str += " foi excluído com sucesso!";
 				prodBo.deleteProdutoBo(produto);
 				request.setAttribute("nome", str);
-				request.getRequestDispatcher("/mensagemDeleteProduto.jsp").forward(request, response);
+				if (infoPagina.equals("listar")) {
+					request.getRequestDispatcher("/listaProduto?escolha=Listar").forward(request, response);
+				} else if (infoPagina.equals("consultar")) {
+					request.getRequestDispatcher("paginas/produto/resultadoConsultaProduto.jsp").forward(request, response);
+				}
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
