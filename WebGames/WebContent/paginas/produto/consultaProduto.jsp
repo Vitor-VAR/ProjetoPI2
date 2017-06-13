@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,10 +7,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Consulta Produto</title>
 </head>
-<body>
+<body><font color="#FFFAFA"> <hl> <c:if
+			test="${ not empty usuarioLogado}">
+	Usuário logado: ${usuarioLogado.email}
+	<form action="/WebGames/login" method="post">
+				<div style="text-align: right;">
+					<input type="submit" name="acao" value="Deslogar" />
+				</div>
+				<hr>
+				<br>
+		</c:if>
 	
 
-<form action="/WebGames/consultaProduto" method="POST">
+<form action="/WebGames/produto" method="POST">
 	<input type="hidden" name="acao" value="Consultar" />
 	<ul>
 		Informe o ID do Produto:<br /> <input type="number" name="id" min="1"/>
@@ -23,7 +33,7 @@
 <br>
 <br>
 <br>
-<a href="ProdutoEscolha.jsp">Menu Produto</a><br>
+<a href="ProdutoEscolha.jsp">Menu Produto</a><br></font>
 
 </body>
 <style>

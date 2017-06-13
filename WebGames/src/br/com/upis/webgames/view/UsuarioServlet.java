@@ -23,7 +23,7 @@ public class UsuarioServlet extends HttpServlet {
 	private String acao = null;
 	private String infoPagina = null;
 	private String escolha = null;
-	
+
 	Usuario usuario = new Usuario();
 	UsuarioBo usuBo = new UsuarioBo();
 
@@ -46,10 +46,11 @@ public class UsuarioServlet extends HttpServlet {
 
 			try {
 				usuBo.insertUsuarioBo(usuario);
-
-				request.setAttribute("usuario", usuario);
-				RequestDispatcher di = request.getRequestDispatcher("paginas/usuario/UsuarioEscolha.jsp");
-				di.forward(request, response);
+				
+					request.setAttribute("usuario", usuario);
+					RequestDispatcher di = request.getRequestDispatcher("/WEB-INF/paginas/mensagemInsert.jsp");
+					di.forward(request, response);
+				
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -69,7 +70,7 @@ public class UsuarioServlet extends HttpServlet {
 			try {
 				usuBo.updateUsuarioBo(usuario);
 				request.setAttribute("usuario", usuario);
-				request.getRequestDispatcher("/mensagemUpdate.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/paginas/mensagemUpdate.jsp").forward(request, response);
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
@@ -87,13 +88,7 @@ public class UsuarioServlet extends HttpServlet {
 			}
 
 		}
-		if (acao.equals("Voltar")) {
-			request.setAttribute("usuario", usuario);
-			RequestDispatcher di = request.getRequestDispatcher("/UsuarioEscolha.jsp");
-			di.forward(request, response);
-
-		}
-
+	
 	}
 
 	@Override
@@ -153,6 +148,5 @@ public class UsuarioServlet extends HttpServlet {
 			}
 
 		}
-
 	}
 }

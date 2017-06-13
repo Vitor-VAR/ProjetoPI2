@@ -10,52 +10,66 @@
 <title>Alterar</title>
 </head>
 <body>
-	<h1>Altera Usuário</h1>
-	<hr />
-	<P>Id do usuário setado: ${usu.id}</P>
+<font color="#FFFAFA">
+<hl> <c:if
+			test="${ not empty usuarioLogado}">
+	Usuário logado: ${usuarioLogado.email}
+	<form action="/WebGames/login" method="post">
+				<div style="text-align: right;">
+					<input type="submit" name="acao" value="Deslogar" />
+				</div>
+				<hr>
+				<br> 
+		</c:if>
+	<h1>---- Altera Usuário ----</h1>
+	<hr /></font>
 	
-	
-	<ul>
-		<form action="/WebGames/alteraUsuario" method="post">
-			<input type="hidden" name="acao" value="Alterar" /> 
-			<input type="hidden" name="id" value="${usu.id}"/> 
-			<li><label for="nome">Nome:<br /> </label> <input type="text"
-				name="nome" id="nome" value="${usu.nome}"/></li>
-			<li><label for="sobrenome">Sobrenome: <br /></label><input type="text"
-				name="sobrenome" id="sobrenome" value="${usu.sobrenome}"/></li>
-			<li><label for="email">Email:<br /> </label><input type="text"
-				name="email" id="email" value="${usu.email}"/></li>
-			<li><label for="cpf">CPF:<br /></label> <input type="number" name="cpf" min="10000000000" max="99999999999"
-				id="cpf" value="${usu.cpf}" /></li>
-			<li><label for="senha">Senha:<br /> </label><input type="text"
-				name="senha" id="senha" value="${usu.senha}"/></li>
-			<li><label for="endereco">Endereço: <br /></label><input type="text"
-				name="endereco" id="endereco" value="${usu.endereco}" /></li>
-			<li><label for="sexo">Sexo:<br /> </label></li>
-			<c:set var="m" value="M" />
-			<c:choose>
-				<c:when test="${usu.sexo.toString() eq m}">
-					<input type="radio" name="sexo" checked="checked" value="M" />Masculino <br />
-					<input type="radio" name="sexo" value="F" />Feminino<br />
-				</c:when>
-				<c:otherwise>
-					<input type="radio" name="sexo" value="M" />Masculino <br />
-					<input type="radio" name="sexo" checked="checked" value="F" />Feminino<br />
-				</c:otherwise>
-			</c:choose>
-			<li>Tipo de Usuario:</li>
+		<P>Id do usuário setado: ${usu.id}</P>
 
-			<input type="radio" name="tipo" value="f"> Funcionário<hl>
 
-			<input type="radio" name="tipo" value="c"> Cliente<hl>
+		<ul>
+			<form action="/WebGames/usuario" method="post">
+				<input type="hidden" name="acao" value="Alterar" /> <input
+					type="hidden" name="id" value="${usu.id}" />
+				<li><label for="nome">Nome:<br />
+				</label> <input type="text" name="nome" id="nome" value="${usu.nome}" /></li>
+				<li><label for="sobrenome">Sobrenome: <br /></label><input
+					type="text" name="sobrenome" id="sobrenome"
+					value="${usu.sobrenome}" /></li>
+				<li><label for="email">Email:<br />
+				</label><input type="text" name="email" id="email" value="${usu.email}" /></li>
+				<li><label for="cpf">CPF:<br /></label> <input type="number"
+					name="cpf" min="10000000000" max="99999999999" id="cpf"
+					value="${usu.cpf}" /></li>
+				<li><label for="senha">Senha:<br />
+				</label><input type="text" name="senha" id="senha" value="${usu.senha}" /></li>
+				<li><label for="endereco">Endereço: <br /></label><input
+					type="text" name="endereco" id="endereco" value="${usu.endereco}" /></li>
+				<li><label for="sexo">Sexo:<br />
+				</label></li>
+				<c:set var="m" value="M" />
+				<c:choose>
+					<c:when test="${usu.sexo.toString() eq m}">
+						<input type="radio" name="sexo" checked="checked" value="M" />Masculino <br />
+						<input type="radio" name="sexo" value="F" />Feminino<br />
+					</c:when>
+					<c:otherwise>
+						<input type="radio" name="sexo" value="M" />Masculino <br />
+						<input type="radio" name="sexo" checked="checked" value="F" />Feminino<br />
+					</c:otherwise>
+				</c:choose>
+				<li>Tipo de Usuario:</li> <input type="radio" name="tipo" value="Administrador">
+				Administrador
+				<hl> <input type="radio" name="tipo" value="Funcionario">
+				Funcionário<hl> <input type="radio" name="tipo" value="Cliente">
+				Cliente<hl>
 
-			<p>
-				<input type="submit" value="Alterar" /> <input type="reset"
-					value="Limpar">
-		</form>
-	</ul>
-	<a href="UsuarioEscolha.jsp">Voltar</a>
-
+				<p>
+					<input type="submit" value="Alterar" /> <input type="reset"
+						value="Limpar">
+			</form>
+		</ul>
+		<a href="paginas/usuario/UsuarioEscolha.jsp">Voltar</a>
 </body>
 <style>
 body {

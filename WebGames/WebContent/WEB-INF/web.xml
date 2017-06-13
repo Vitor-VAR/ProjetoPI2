@@ -7,207 +7,44 @@
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-
-	<servlet>
-		<servlet-name>LoginServlets</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.LoginView</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>LoginServlets</servlet-name>
-		<url-pattern>/Login</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>UsuarioEscolha</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.UsuarioServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>UsuarioEscolha</servlet-name>
-		<url-pattern>/UsuarioEscolha</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
-		<servlet-name>adicionaUsuario</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.UsuarioServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>adicionaUsuario</servlet-name>
-		<url-pattern>/adicionaUsuario</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>alteraUsuario</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.UsuarioServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>alteraUsuario</servlet-name>
-		<url-pattern>/alteraUsuario</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>listaUsuario</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.UsuarioServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>listaUsuario</servlet-name>
-		<url-pattern>/listaUsuario</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>consultaUsuario</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.UsuarioServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>consultaUsuario</servlet-name>
-		<url-pattern>/consultaUsuario</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>resultadoConsulta</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.UsuarioServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>resultadoConsulta</servlet-name>
-		<url-pattern>/resultadoConsulta</url-pattern>
-	</servlet-mapping>
-
-
-
-
-
-
-	<servlet>
-		<servlet-name>adicionaProduto</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.ProdutoServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>adicionaProduto</servlet-name>
-		<url-pattern>/adicionaProduto</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
-		<servlet-name>alteraProduto</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.ProdutoServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>alteraProduto</servlet-name>
-		<url-pattern>/alteraProduto</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
-		<servlet-name>consultaProduto</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.ProdutoServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>consultaProduto</servlet-name>
-		<url-pattern>/consultaProduto</url-pattern>
-	</servlet-mapping>
-
-
-
-	<servlet>
-		<servlet-name>listaProduto</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.ProdutoServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>listaProduto</servlet-name>
-		<url-pattern>/listaProduto</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>mesagemDeleteProduto</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.ProdutoServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>mesagemDeleteProduto</servlet-name>
-		<url-pattern>/mesagemDeleteProduto</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
-		<servlet-name>mesagemInsertProduto</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.ProdutoServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>mesagemInsertProduto</servlet-name>
-		<url-pattern>/mesagemInsertProduto</url-pattern>
-	</servlet-mapping>
-
-
-
-	<servlet>
-		<servlet-name>mesagemUpdateProduto</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.ProdutoServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>mesagemUpdateProduto</servlet-name>
-		<url-pattern>/mesagemUpdateProduto</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
-		<servlet-name>ProdutoEscolha</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.ProdutoServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>ProdutoEscolha</servlet-name>
-		<url-pattern>/ProdutoEscolha</url-pattern>
-	</servlet-mapping>
-	<servlet>
 	
-		<servlet-name>resultadoConsultaProduto</servlet-name>
+	<filter>
+		<filter-name>FiltroAuditoria</filter-name>
+		<filter-class>br.com.upis.webgames.filtro.FiltroAuditoria</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>FiltroAuditoria</filter-name>
+		<url-pattern>/*</url-pattern>		
+</filter-mapping>
+
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>br.com.upis.webgames.view.LoginView</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UsuarioServlet</servlet-name>
+		<servlet-class>br.com.upis.webgames.view.UsuarioServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UsuarioServlet</servlet-name>
+		<url-pattern>/usuario</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>ProdutoServlet</servlet-name>
 		<servlet-class>br.com.upis.webgames.view.ProdutoServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>resultadoConsultaProduto</servlet-name>
-		<url-pattern>/resultadoConsultaProduto</url-pattern>
+		<servlet-name>ProdutoServlet</servlet-name>
+		<url-pattern>/produto</url-pattern>
 	</servlet-mapping>
-
-
-
-
-
-
-	<servlet>
-		<servlet-name>mensagemInsert</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.UsuarioServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>mensagemInsert</servlet-name>
-		<url-pattern>/mensagemInsert</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>mensagemUpdate</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.UsuarioServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>mensagemUpdate</servlet-name>
-		<url-pattern>/mensagemUpdate</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>mensagemDelete</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.UsuarioServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>mensagemDelete</servlet-name>
-		<url-pattern>/mensagemDelete</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>mensagemErroLogar</servlet-name>
-		<servlet-class>br.com.upis.webgames.view.LoginView</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>mensagemErroLogar</servlet-name>
-		<url-pattern>/mensagemErroLogar</url-pattern>
-	</servlet-mapping>
-
 
 </web-app>

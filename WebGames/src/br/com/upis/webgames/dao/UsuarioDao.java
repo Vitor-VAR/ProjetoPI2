@@ -126,6 +126,33 @@ public class UsuarioDao {
 		}
 		return usuario;
 	}
+	public Usuario subirLoginDao(String email) {
+		Usuario usuario = new Usuario();
+
+		String sql = "select * from usuario where email = ?";
+		try {
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, email);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				usuario.setId(rs.getInt("idUsuario"));
+				usuario.setNome(rs.getString("nome"));
+				usuario.setSobrenome(rs.getString("sobrenome"));
+				usuario.setCpf(rs.getString("cpf"));
+				usuario.setSexo(rs.getString("sexo"));
+				usuario.setEmail(rs.getString("email"));
+				usuario.setEndereco(rs.getString("endereco"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setTipo(rs.getString("tipoUsuario"));
+			}
+			rs.close();
+			statement.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return usuario;
+	}
 
 	public  List<Usuario> listaDao() {
 		List<Usuario> lista = new ArrayList<>();

@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.upis.webgames.bo.UsuarioBo;
 import br.com.upis.webgames.entidade.Usuario;
@@ -24,27 +25,36 @@ public class LoginView extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String login = request.getParameter("email");
-		String senha = request.getParameter("senha");
-
 		Usuario usu = new Usuario();
 		UsuarioBo bo = new UsuarioBo();
 
 		acao = request.getParameter("acao");
-
+System.out.println("não era para cair aqui!");
 		if (acao.equals("Logar")) {
 
-			usu.setEmail(login);
-			usu.setSenha(senha);
+			usu.setEmail(request.getParameter("email"));
+			usu.setSenha(request.getParameter("senha"));
 			try {
 				if (bo.autenticaLogin(usu)) {
-					request.setAttribute("email", usu);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/usuario/UsuarioEscolha.jsp");
-					dispatcher.forward(request, response);
-
+					usu = bo.permissaoTipoUsuarioBo(usu);
+					HttpSession session = request.getSession();
+					session.setAttribute("usuarioLogado", usu);
+					if (usu.getTipo().equals("Administrador") || usu.getTipo().equals("Funcionario")) {
+						RequestDispatcher dispatcher = request.getRequestDispatcher("menu.jsp");
+						dispatcher.forward(request, response);
+					} else if (usu.getTipo().equals("Cliente")) {
+						System.out.println(usu.getNome());
+						RequestDispatcher dispatcher = request.getRequestDispatcher("../produto?escolha=Listar");
+						dispatcher.forward(request, response);
+					}
 				} else {
 					System.out.println("Usuario não cadastrado no banco!");
-					response.sendRedirect("../WebGames/paginas/usuario/mensagemErroLogar.jsp");
+					String str = "Login - email incorreto ou usuário não cadastrado no banco de dados!";
+					request.setAttribute("mensagem", str);
+					RequestDispatcher dispatcher = request
+							.getRequestDispatcher("/WEB-INF/paginas/mensagemErroLogar.jsp");
+					dispatcher.forward(request, response);
+
 					// Colocar aqui algum tratamento de erro caso o usuário não
 					// tenha cadastro no site!
 				}
@@ -53,11 +63,29 @@ public class LoginView extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} else if (acao.equals("Cadastrar")) {
+		}
+		if (acao.equals("Deslogar")) {
+			request.getSession().removeAttribute("usuarioLogado");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/paginas/logout.html");
+			dispatcher.forward(request, response);
+		}
+		if (acao.equals("Cadastrar")) {
 
 			response.sendRedirect("../WebGames/paginas/usuario/adicionaUsuario.jsp");
 
 		}
 
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String acao = null;
+		acao = request.getParameter("acao");
+		if (acao.equals("Deslogar")) {
+			request.getSession().removeAttribute("usuarioLogado");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/paginas/logout.html");
+			dispatcher.forward(request, response);
+		}
+		
 	}
 }

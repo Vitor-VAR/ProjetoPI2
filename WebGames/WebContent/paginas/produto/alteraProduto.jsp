@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,14 +8,25 @@
 <title>Altera Produto</title>
 </head>
 <body>
+<font color="#FFFAFA">
+<hl> <c:if
+			test="${ not empty usuarioLogado}">
+	Usuário logado: ${usuarioLogado.email}
+	<form action="/WebGames/login" method="post">
+				<div style="text-align: right;">
+					<input type="submit" name="acao" value="Deslogar" />
+				</div>
+				<hr>
+				<br> 
+		</c:if>
 	<h1>Altera Produto</h1>
-	<hr />
+	<hr /></font>
 
 	<P>Id do produto setado: ${prod.id}</P>
 	<br>
 
 	<ul>
-		<form action="/WebGames/alteraProduto" method="post">
+		<form action="/WebGames/produto" method="post">
 			<input type="hidden" name="acao" value="Alterar" /> <input
 				type="hidden" name="id" value="${prod.id}" />
 				
@@ -54,8 +66,8 @@
 			<li>Descrição:<br /> <textarea name="descricao" rows="4"
 					cols="50"> ${prod.descricao}</textarea>
 			</li>
-			<li>Preço:<br /> <input type="number" step="1.00" min="0"
-				name="${prod.preco }" />
+			<li>Preço:<br /> <input type="number" step="5.00" min="0"
+				name="${prod.preco}" />
 			</li>
 
 			<li>Quantidade:<br /> <input type="number" name="quantidade"

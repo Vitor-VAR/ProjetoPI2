@@ -80,12 +80,6 @@ public class ProdutoServlet extends HttpServlet {
 			}
 
 		}
-		if (acao.equals("Voltar")) {
-			request.setAttribute("produto", produto);
-			RequestDispatcher di = request.getRequestDispatcher("paginas/produto/ProdutoEscolha.jsp");
-			di.forward(request, response);
-
-		}
 
 	}
 
@@ -100,7 +94,7 @@ public class ProdutoServlet extends HttpServlet {
 		if (escolha.equals("Consultar")) {
 			response.sendRedirect("../WebGames/paginas/produto/consultaProduto.jsp");
 		}
-		if (escolha.equals("opcaoInserir")) {
+		if (escolha.equals("Inserir")) {
 			response.sendRedirect("../WebGames/paginas/produto/adicionaProduto.jsp");
 		}
 		if (escolha.equals("Listar")) {
@@ -136,7 +130,7 @@ public class ProdutoServlet extends HttpServlet {
 				prodBo.deleteProdutoBo(produto);
 				request.setAttribute("nome", str);
 				if (infoPagina.equals("listar")) {
-					request.getRequestDispatcher("/listaProduto?escolha=Listar").forward(request, response);
+					request.getRequestDispatcher("/produto?escolha=Listar").forward(request, response);
 				} else if (infoPagina.equals("consultar")) {
 					request.getRequestDispatcher("paginas/produto/resultadoConsultaProduto.jsp").forward(request, response);
 				}

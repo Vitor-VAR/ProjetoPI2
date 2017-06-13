@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>MesangemDelete</title>
+<title>Mesangem Delete</title>
 </head>
 <body>
 <h2>Usuário atualizado com sucesso: ${usuario.name}</h2>
 
-<form action="/WebGames/mensagemUpdate" method="post">
+<form action="/WebGames/usuario" method="post">
 				<input type="hidden" name="acao" value="Voltar">
 					<input type="button" value="Voltar">
 	</form>

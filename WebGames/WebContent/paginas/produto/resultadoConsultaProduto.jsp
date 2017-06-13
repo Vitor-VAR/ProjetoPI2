@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,7 +7,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Resultado da consulta</title>
 </head>
-<body>
+<body><hl> <c:if
+			test="${not empty usuarioLogado}">
+	Usuário logado: ${usuarioLogado.email}
+	<form action="/WebGames/login" method="post">
+				
+				<div style="text-align: right;">
+					<input type="submit" name="acao" value="Deslogar" />
+				</div>
+				<hr>
+				<br> 
+		</c:if>
 <h1>Resultado da busca!!</h1>
 <hr>
 <br>
@@ -34,8 +45,8 @@
 					<td>${produto.preco}</td>
 					<td>${produto.quantidade}</td>
 	
-					<td><a href="/WebGames/alteraProduto?escolha=opcaoAlterar&id=${produto.id}">Alterar</a><br>
-					<a href="/WebGames/alteraProduto?escolha=Excluir&id=${produto.id}&nome=${produto.nome}&infoPagina=consultar">Excluir</a>
+					<td><a href="/WebGames/produto?escolha=opcaoAlterar&id=${produto.id}">Alterar</a><br>
+					<a href="/WebGames/produto?escolha=Excluir&id=${produto.id}&nome=${produto.nome}&infoPagina=consultar">Excluir</a>
 						</td>
 				</tr>
 		</table>

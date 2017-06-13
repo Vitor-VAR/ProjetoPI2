@@ -7,15 +7,13 @@ import br.com.upis.webgames.entidade.Usuario;
 
 import java.sql.SQLException;
 
-
-
 public class UsuarioBo {
 
 	public UsuarioBo() {
 
 	}
 
-	Usuario usu = new Usuario();
+	Usuario usuario = new Usuario();
 
 	public boolean autenticaLogin(Usuario usu) throws ClassNotFoundException, SQLException {
 		UsuarioDao usuDao = new UsuarioDao();
@@ -25,11 +23,10 @@ public class UsuarioBo {
 			return false;
 	}
 
-	private boolean validaTipoUsuarioBo(Usuario usuario) {
-		if (usuario.getTipo().equals("a") || usuario.getTipo().equals("f") || usuario.getTipo().equals("u")) {
-			return true;
-		}
-		return false;
+	public Usuario permissaoTipoUsuarioBo(Usuario usuario) throws ClassNotFoundException, SQLException {
+		UsuarioDao usuDao = new UsuarioDao();
+		usuario = usuDao.subirLoginDao(usuario.getEmail());
+		return usuario;
 	}
 
 	private boolean validaEmailUsuarioBo(Usuario usuario) {
@@ -48,7 +45,7 @@ public class UsuarioBo {
 	}
 
 	private boolean validaInfoUsuario(Usuario usuario) throws ClassNotFoundException, SQLException {
-		if (validaCpfUsuario(usuario) && validaEmailUsuarioBo(usuario) && validaTipoUsuarioBo(usuario)) {
+		if (validaCpfUsuario(usuario) && validaEmailUsuarioBo(usuario)) {
 		}
 		return true;
 	}
@@ -86,7 +83,5 @@ public class UsuarioBo {
 		UsuarioDao usuDao = new UsuarioDao();
 		usuDao.deleteUsuarioDao(usuario);
 	}
-
-
 
 }

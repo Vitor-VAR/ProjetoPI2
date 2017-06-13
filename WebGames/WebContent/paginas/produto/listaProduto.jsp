@@ -11,16 +11,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Lista de Produtos</title>
 </head>
-<body>
+<body><font color="#FFFAFA">
+	<hl> <c:if
+			test="${ not empty usuarioLogado}">
+	Usuário logado: ${usuarioLogado.email}
+	<form action="/WebGames/login" method="post">
+				<div style="text-align: right;">
+					<input type="submit" name="acao" value="Deslogar" />
+				</div>
+				<hr>
+				<br> 
+		</c:if>
 		
 	<h1>Lista Produto</h1>
 	<hr />
+		</font>
 	<div align="center">
 	<p>LISTA DE PRODUTOS</p>
 
-		<table border="1">
+		<table border="2">
 			<tr>
-				<td>ID</td>
+				
 				<td>Nome</td>
 				<td>Gênero</td>
 				<td>Plataforma</td>
@@ -33,7 +44,7 @@
 
 			<c:forEach var="produto" items="${produtoLista}">
 				<tr>
-					<td><c:out value= "${produto.id}"/></td>
+					
 					<td>${produto.nome}</td>
 					<td>${produto.genero}</td>
 					<td>${produto.plataforma}</td>
@@ -42,9 +53,9 @@
 					<td>${produto.quantidade}</td>
 					
 					
-					<td><a href="/WebGames/alteraProduto?escolha=opcaoAlterar&id=${produto.id}">Alterar</a>
+					<td><a href="/WebGames/produto?escolha=opcaoAlterar&id=${produto.id}">Alterar</a>
 					
-					<a href="/WebGames/alteraProduto?escolha=Excluir&id=${produto.id}&nome=${produto.nome}&infoPagina=listar">Excluir</a>
+					<a href="/WebGames/produto?escolha=Excluir&id=${produto.id}&nome=${produto.nome}&infoPagina=listar">Excluir</a>
 						</td>
 				</tr>
 			</c:forEach>
