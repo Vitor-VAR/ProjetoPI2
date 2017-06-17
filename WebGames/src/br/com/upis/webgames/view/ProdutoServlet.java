@@ -14,12 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.upis.webgames.bo.ProdutoBo;
 import br.com.upis.webgames.entidade.Produto;
 
-
 public class ProdutoServlet extends HttpServlet {
 
 	private String acao = null;
 	private String escolha = null;
-	private String infoPagina= null;
+	private String infoPagina = null;
 	Produto produto = new Produto();
 	ProdutoBo prodBo = new ProdutoBo();
 
@@ -34,14 +33,14 @@ public class ProdutoServlet extends HttpServlet {
 			System.out.println(produto.getNome());
 			produto.setGenero(request.getParameter("genero"));
 			produto.setPlataforma(request.getParameter("plataforma"));
-			produto.setDescricao(request.getParameter("descricao")); 
-			produto.setPreco(Double.parseDouble(prodBo.formataValor (request.getParameter("valor"))));
+			produto.setDescricao(request.getParameter("descricao"));
+			produto.setPreco(Double.parseDouble(prodBo.formataValor(request.getParameter("valor"))));
 			produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
 			System.out.println(produto.getPlataforma());
 			try {
 				prodBo.insertProdutoBo(produto);
 				request.setAttribute("produto", produto);
-				RequestDispatcher di = request.getRequestDispatcher("paginas/produto/mensagemInsertProduto.jsp");
+				RequestDispatcher di = request.getRequestDispatcher("/WEB-INF/paginas/mensagemInsertProduto.jsp");
 				di.forward(request, response);
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
@@ -57,7 +56,7 @@ public class ProdutoServlet extends HttpServlet {
 			produto.setDescricao(request.getParameter("descricao"));
 			produto.setPreco(Double.parseDouble(prodBo.formataValor(request.getParameter("preco"))));
 			produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
-			
+
 			try {
 				prodBo.updateProdutoBo(produto);
 				request.setAttribute("produto", produto);
@@ -69,13 +68,17 @@ public class ProdutoServlet extends HttpServlet {
 		}
 
 		if (acao.equals("Consultar")) {
+			List<Produto> ListaProduto = new ArrayList<>();
+			System.out.println("Caiu aqui no consultar");
 			try {
-				produto = prodBo.selectProdutoIdBo(Integer.parseInt(request.getParameter("id")));
-				System.out.println(produto.getId());
-				request.setAttribute("produto", produto);
-				request.getRequestDispatcher("paginas/produto/resultadoConsultaProduto.jsp").forward(request, response);
-
-			} catch (NumberFormatException | ClassNotFoundException | SQLException e) {
+				ListaProduto = prodBo.selectProdutoNomeBo(request.getParameter("nome"));
+				System.out.println(ListaProduto);
+				RequestDispatcher rd= request.getRequestDispatcher("paginas/produto/resultadoConsultaProduto.jsp");
+				request.setAttribute("produtoLista", ListaProduto);
+				rd.forward(request, response);
+				System.out.println("Passou pelo try");
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -89,7 +92,6 @@ public class ProdutoServlet extends HttpServlet {
 
 		escolha = request.getParameter("escolha");
 		infoPagina = request.getParameter("infoPagina");
-		
 
 		if (escolha.equals("Consultar")) {
 			response.sendRedirect("../WebGames/paginas/produto/consultaProduto.jsp");
@@ -132,7 +134,8 @@ public class ProdutoServlet extends HttpServlet {
 				if (infoPagina.equals("listar")) {
 					request.getRequestDispatcher("/produto?escolha=Listar").forward(request, response);
 				} else if (infoPagina.equals("consultar")) {
-					request.getRequestDispatcher("paginas/produto/resultadoConsultaProduto.jsp").forward(request, response);
+					request.getRequestDispatcher("paginas/produto/resultadoConsultaProduto.jsp").forward(request,
+							response);
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
@@ -142,8 +145,3 @@ public class ProdutoServlet extends HttpServlet {
 
 	}
 }
-
-		
-	
-
-

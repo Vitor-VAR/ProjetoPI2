@@ -8,19 +8,20 @@
 <title>Usuário Escolha</title>
 </head>
 <body>
-	<font color="#FFFAFA"> <hl> <c:if
+<font color="#FFFAFA"> <hl> <c:if
 			test="${ not empty usuarioLogado}">
 	Usuário logado: ${usuarioLogado.email}
-	<form action="/WebGames/login" method="get">
-				<div style="text-align: right;">
-					<input type="submit" name="acao" value="Deslogar" />
-				</div>
-				<hr>
-				<br> 
-		</c:if>
+	<div style="text-align: right;">
+		<p>
+				<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
+			</p>
+</div>
+			<hr>
 
+		</c:if>
+	
 		<center>
-			<h1>---- Menu Usuário ----</h1>
+			<h1>---- MENU USUÁRIO ----</h1>
 			<hr />
 			<br> <br>
 			<form action="/WebGames/usuario" method="get">

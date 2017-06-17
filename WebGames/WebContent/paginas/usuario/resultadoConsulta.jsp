@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -8,57 +9,66 @@
 <title>Resultado da consulta</title>
 </head>
 <body>
-	<hl> <c:if
-			test="${not empty usuarioLogado}">
+<c:if
+			test="${ not empty usuarioLogado}">
 	Usuário logado: ${usuarioLogado.email}
-	<form action="/WebGames/login" method="post">
-				<div style="text-align: right;">
-					<input type="submit" name="acao" value="Deslogar" />
-				</div>
-				<hr>
-				<br> 
+	<div style="text-align: right;">
+		<p>
+				<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
+			</p>
+</div>
+			<hr>
+
 		</c:if>
-		<h1>Resultado da busca!!</h1>
-		<hr>
-		<br> <br> <br>
-		<table border="1">
-			<tr>
-				<td>ID</td>
-				<td>Nome</td>
-				<td>Sobrenome</td>
-				<td>CPF</td>
-				<td>Sexo</td>
-				<td>E-mail</td>
-				<td>Endereço</td>
-				<td>Senha</td>
-				<td>Tipo</td>
-				<td>Comandos</td>
-			</tr>
+	<h1>Resultado da busca!!</h1>
+	<hr>
+	<br>
+	<br>
+	<br>
+	<table border="2">
+		<tr>
+
+			<td>Nome</td>
+			<td>Sobrenome</td>
+			<td>CPF</td>
+			<td>Sexo</td>
+			<td>E-mail</td>
+			<td>Endereço</td>
+			<td>Tipo</td>
+			<td>Comandos</td>
+		</tr>
 
 
+		<c:forEach var="usuario" items="${usuarioLista}">
 			<tr>
-				<td>${usuario.id}</td>
 				<td>${usuario.nome}</td>
 				<td>${usuario.sobrenome}</td>
 				<td>${usuario.cpf}</td>
 				<td>${usuario.sexo}</td>
 				<td>${usuario.email}</td>
 				<td>${usuario.endereco}</td>
-				<td>${usuario.senha}</td>
 				<td>${usuario.tipo}</td>
 				<td><a
 					href="/WebGames/usuario?escolha=opcaoAlterar&id=${usuario.id}">Alterar</a>
+
 					<a
-					href="/WebGames/usuario?escolha=Excluir&id=${usuario.id}&nome=${usuario.nome}&infoPagina=consultar">Excluir</a>
+					href="/WebGames/usuario?escolha=Excluir&id=${usuario.id}&nome=${usuario.nome}&infoPagina=Consultar">Excluir</a>
 				</td>
 			</tr>
-		</table>
-		<br> <br>
-		<p>${nome}</p>
-		<br> <br> <br> <br>
-		<center>
-			<a href="paginas/usuario/UsuarioEscolha.jsp">Menu Usuário</a><br>
-		</center>
+		</c:forEach>
+	</table>
+	<c:if test="${fn:length(usuarioLista) > 0}">
+   		Existem ${fn:length(usuarioLista)} Usuários!
+ 		</c:if> <br>
+	</div>
+	<p>${nome}</p>
+	<br>
+	<br>
+	<br>
+	<br>
+	<center>
+		<a href="paginas/usuario/UsuarioEscolha.jsp">Menu Usuário</a><br>
+	</center>
 </body>
 <style>
 body {

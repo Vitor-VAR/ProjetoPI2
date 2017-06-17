@@ -5,6 +5,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+<font color="#FFFAFA"> <hl> <c:if
+			test="${ not empty usuarioLogado}">
+	Usuário logado: ${usuarioLogado.email}
+	<div style="text-align: right;">
+		<p>
+				<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
+			</p>
+</div>
+			<hr>
+
+		</c:if>
 
 </body>
 		<style>

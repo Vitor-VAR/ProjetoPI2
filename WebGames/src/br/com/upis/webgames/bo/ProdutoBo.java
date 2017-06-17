@@ -68,4 +68,10 @@ public class ProdutoBo {
 		return valor;
 	}
 
+	public List<Produto> selectProdutoNomeBo(String nome) throws ClassNotFoundException, SQLException {
+		ProdutoDao prodDao= new ProdutoDao();
+		return prodDao.searchProdutoDao(nome);
+	}
+
+
 }

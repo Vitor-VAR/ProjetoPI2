@@ -46,11 +46,11 @@ public class UsuarioServlet extends HttpServlet {
 
 			try {
 				usuBo.insertUsuarioBo(usuario);
-				
-					request.setAttribute("usuario", usuario);
-					RequestDispatcher di = request.getRequestDispatcher("/WEB-INF/paginas/mensagemInsert.jsp");
-					di.forward(request, response);
-				
+
+				request.setAttribute("usuario", usuario);
+				RequestDispatcher di = request.getRequestDispatcher("/WEB-INF/paginas/mensagemInsert.jsp");
+				di.forward(request, response);
+
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -78,17 +78,19 @@ public class UsuarioServlet extends HttpServlet {
 		}
 
 		if (acao.equals("Consultar")) {
+			List<Usuario> Lista = new ArrayList<>();
 			try {
-				usuario = usuBo.selectUsuarioIdBo(Integer.parseInt(request.getParameter("id")));
-				request.setAttribute("usuario", usuario);
-				request.getRequestDispatcher("paginas/usuario/resultadoConsulta.jsp").forward(request, response);
-
-			} catch (NumberFormatException | ClassNotFoundException | SQLException e) {
+				Lista = usuBo.selectUsuarioNomeBo(request.getParameter("nome"));
+				System.out.println(Lista);
+				RequestDispatcher rd = request.getRequestDispatcher("paginas/usuario/resultadoConsulta.jsp");
+				request.setAttribute("usuarioLista", Lista);
+				rd.forward(request, response);
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
 		}
-	
 	}
 
 	@Override
@@ -120,13 +122,9 @@ public class UsuarioServlet extends HttpServlet {
 
 		}
 		if (escolha.equals("opcaoAlterar")) {
-			try {
-				usuario = usuBo.selectUsuarioIdBo(Integer.parseInt(request.getParameter("id")));
-				request.setAttribute("usu", usuario);
-				request.getRequestDispatcher("paginas/usuario/alteraUsuario.jsp").forward(request, response);
-			} catch (NumberFormatException | ClassNotFoundException | SQLException e) {
-				e.printStackTrace();
-			}
+			usuario = usuBo.selectUsuarioIdBo(Integer.parseInt(request.getParameter("id")));
+			request.setAttribute("usu", usuario);
+			request.getRequestDispatcher("paginas/usuario/alteraUsuario.jsp").forward(request, response);
 		}
 		if (escolha.equals("Excluir")) {
 

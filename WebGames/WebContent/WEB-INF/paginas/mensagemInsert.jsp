@@ -8,19 +8,20 @@
 <title>MesangemInsert</title>
 </head>
 <body>
-	<hl> <c:if test="${ not empty usuarioLogado}">
+	 <c:if
+			test="${ not empty usuarioLogado}">
 	Usuário logado: ${usuarioLogado.email}
-	<form action="/WebGames/usuario" method="post">
-			<input type="hidden" name="acao" value="Deslogar" />
-			<div style="text-align: right;">
-				<input type="submit" name="acao" value="Deslogar" />
-			</div>
+	<div style="text-align: right;">
+		<p>
+				<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
+			</p>
+</div>
 			<hr>
-			<br>
-	</c:if>
+
+		</c:if>
 
 	<h2>Usuário inserido com sucesso: ${usuario.nome}</h2>
-	<c:if test="${not usuario.tipo eq Cliente}">
+	<c:if test="${usuarioLogado.tipo eq Administrador}">
 
 		<a href="paginas/usuario/UsuarioEscolha.jsp">Menu Usuário</a>
 		<br>
@@ -29,9 +30,11 @@
 		<a href="paginas/usuario/adicionaUsuario.jsp">Inserir mais usuários</a>
 		<br>
 	</c:if>
+	<c:if test="${empty usuarioLogado}">
 	<center>
 		<a href="paginas/usuario/Login.jsp">Fazer login</a><br>
 	</center>
+	</c:if>
 </body>
 <style>
 body {

@@ -7,6 +7,17 @@
 <title>Mesangem Delete</title>
 </head>
 <body>
+ <c:if
+			test="${ not empty usuarioLogado}">
+	Usuário logado: ${usuarioLogado.email}
+	<div style="text-align: right;">
+		<p>
+				<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
+			</p>
+</div>
+			<hr>
+
+		</c:if>
 <h2>Usuário atualizado com sucesso: ${usuario.name}</h2>
 
 <form action="/WebGames/usuario" method="post">

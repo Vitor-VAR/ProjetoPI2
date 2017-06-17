@@ -8,22 +8,24 @@
 <title>Menu Produto</title>
 </head>
 <body>
-	<font color="#FFFAFA"> <hl> <c:if
+<font color="#FFFAFA"> <hl> <c:if
 			test="${ not empty usuarioLogado}">
 	Usuário logado: ${usuarioLogado.email}
-	<form action="/WebGames/login" method="get">
-				<div style="text-align: right;">
-					<input type="submit" name="acao" value="Deslogar" />
-				</div>
-				<hr>
-				<br>
+	<div style="text-align: right;">
+		<p>
+				<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
+			</p>
+</div>
+			<hr>
+
 		</c:if>
+	
 		<center>
-			<h1>**** Menu Produtos ****</h1>
+			<h1>**** MENU PRODUTOS ****</h1>
 			<hr />
 			<br> <br>
 			<form action="/WebGames/produto" method="get">
-				 <input
+				<input type="hidden" name="escolha" value="Inserir"> <input
 					type="submit" value="Inserir">
 			</form>
 			<hr>
@@ -38,7 +40,14 @@
 				<input type="hidden" name="escolha" value="Consultar"> <input
 					type="submit" value="Consultar">
 			</form>
-		</center><br><br><br><br><br><br><br>
+		</center>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 		<a href="/WebGames/menu.jsp">Menu Principal</a></font>
 
 </body>

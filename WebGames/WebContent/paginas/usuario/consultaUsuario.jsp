@@ -7,32 +7,40 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Consulta Usuário</title>
 </head>
-<body>
-	<font color="#FFFAFA"> <hl> <c:if
+<body> <hl> <c:if
 			test="${ not empty usuarioLogado}">
 	Usuário logado: ${usuarioLogado.email}
-	<form action="/WebGames/login" method="post">
-				<div style="text-align: right;">
-					<input type="submit" name="acao" value="Deslogar" />
-				</div>
-				<hr>
-				<br>
+	<div style="text-align: right;">
+		<p>
+				<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
+			</p>
+</div>
+			<hr>
+
 		</c:if>
+	
+		<center>
+			<h1>**** Consultar usuário ****</h1>
+			<hr />
+			<br> <br>
+			<form action="/WebGames/usuario" method="POST">
+				<input type="hidden" name="acao" value="Consultar" />
+				<ul>
+					<p>Procurar usuário:</p>
+					<br>
+					<input type="text" name="nome" />
+					<br>
+					<br>
+					<input type="submit" value="Consultar" />
 
-
-		<form action="/WebGames/usuario" method="POST">
-			<input type="hidden" name="acao" value="Consultar" />
-			<ul>
-				Informe o ID do Usuário:
-				<br />
-				<input type="text" name="id" />
-				<br />
-				<input type="submit" value="Consultar" />
-
-				<input type="reset" value="Limpar">
-				<br />
-			</ul>
-		</form>
+					<input type="reset" value="Limpar">
+					<br />
+				</ul>
+			</form>
+		</center>
+		<br>
+		<br>
+		<br>
 
 		<a href="UsuarioEscolha.jsp">Voltar</a></font>
 </body>

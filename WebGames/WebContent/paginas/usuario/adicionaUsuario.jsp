@@ -8,16 +8,16 @@
 <title>Adiciona Usuário</title>
 </head>
 <body>
-<font color="#FFFAFA">
-<hl> <c:if
+<font color="#FFFAFA"> <hl> <c:if
 			test="${ not empty usuarioLogado}">
 	Usuário logado: ${usuarioLogado.email}
-	<form action="/WebGames/login" method="post">
-				<div style="text-align: right;">
-					<input type="submit" name="acao" value="Deslogar" />
-				</div>
-				<hr>
-				<br> 
+	<div style="text-align: right;">
+		<p>
+				<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
+			</p>
+</div>
+			<hr>
+
 		</c:if>
 	<h1>---- Adiciona Usuário ----</h1>
 

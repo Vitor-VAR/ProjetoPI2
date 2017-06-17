@@ -1,61 +1,74 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Resultado da consulta</title>
 </head>
-<body><hl> <c:if
-			test="${not empty usuarioLogado}">
+<body>
+	 <c:if
+			test="${ not empty usuarioLogado}">
 	Usuário logado: ${usuarioLogado.email}
-	<form action="/WebGames/login" method="post">
-				
-				<div style="text-align: right;">
-					<input type="submit" name="acao" value="Deslogar" />
-				</div>
-				<hr>
-				<br> 
+	<div style="text-align: right;">
+		<p>
+				<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
+			</p>
+</div>
+			<hr>
+
 		</c:if>
-<h1>Resultado da busca!!</h1>
-<hr>
-<br>
-<br>
-<table border="2">
+	<h1>RESULTADO DA BUSCA!</h1>
+	<hr>
+	<br>
+	<br>
+	<table border="2">
+		<tr>
+
+			<td>Nome</td>
+			<td>Gênero</td>
+			<td>Plataforma</td>
+			<td>Descrição</td>
+			<td>Preço</td>
+			<td>Quantidade</td>
+			<td>Opções</td>
+
+		</tr>
+
+
+		<c:forEach var="produto" items="${produtoLista}">
 			<tr>
-				<td>ID</td>
-				<td>Nome</td>
-				<td>Gênero</td>
-				<td>Plataforma</td>
-				<td>Descrição</td>
-				<td>Preço</td>
-				<td>Quantidade</td>
-				<td>Opções</td>
-				
+
+				<td>${produto.nome}</td>
+				<td>${produto.genero}</td>
+				<td>${produto.plataforma}</td>
+				<td>${produto.descricao}</td>
+				<td>${produto.preco}</td>
+				<td>${produto.quantidade}</td>
+
+
+				<td><a
+					href="/WebGames/produto?escolha=opcaoAlterar&id=${produto.id}">Alterar</a>
+
+					<a
+					href="/WebGames/produto?escolha=Excluir&id=${produto.id}&nome=${produto.nome}&infoPagina=Consultar">Excluir</a>
+				</td>
 			</tr>
+		</c:forEach>
+	</table>
+	<c:if test="${fn:length(produtoLista) > 0}">
+   		Existem ${fn:length(produtoLista)} Produtos!
+ 		</c:if> <br>
+	</div>
+	<h2>${nome}</h2>
 
-			
-				<tr>
-					<td>${produto.id}</td>
-					<td>${produto.nome}</td>
-					<td>${produto.genero}</td>
-					<td>${produto.plataforma}</td>
-					<td>${produto.descricao}</td>
-					<td>${produto.preco}</td>
-					<td>${produto.quantidade}</td>
-	
-					<td><a href="/WebGames/produto?escolha=opcaoAlterar&id=${produto.id}">Alterar</a><br>
-					<a href="/WebGames/produto?escolha=Excluir&id=${produto.id}&nome=${produto.nome}&infoPagina=consultar">Excluir</a>
-						</td>
-				</tr>
-		</table>
-		<br>
 
-	<a href="paginas/produto/ProdutoEscolha.jsp">Menu Produto</a><br>
-
+	<a href="paginas/produto/ProdutoEscolha.jsp">Menu Produto</a>
+	<br>
 </body>
-		<style>
+<style>
 body {
 	background-image: url(/WebGames/imagens/fundo.jpg);
 	background-attachment: fixed;

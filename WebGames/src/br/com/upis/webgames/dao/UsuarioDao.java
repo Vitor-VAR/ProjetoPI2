@@ -99,15 +99,17 @@ public class UsuarioDao {
 		return false;
 	}
 
-	public Usuario selectUsuarioDao(int id) {
-		Usuario usuario = new Usuario();
+	public List<Usuario> searchUsuarioDao(String nome) {
+		List<Usuario> selectLista = new ArrayList<>();
+		
 
-		String sql = "select * from usuario where idUsuario = ?";
+		String sql = "select * from usuario where nome like ?";
 		try {
 			PreparedStatement statement = connection.prepareStatement(sql);
-			statement.setLong(1, id);
+			statement.setString(1, nome +'%');
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
+				Usuario usuario = new Usuario();
 				usuario.setId(rs.getInt("idUsuario"));
 				usuario.setNome(rs.getString("nome"));
 				usuario.setSobrenome(rs.getString("sobrenome"));
@@ -117,6 +119,7 @@ public class UsuarioDao {
 				usuario.setEndereco(rs.getString("endereco"));
 				usuario.setSenha(rs.getString("senha"));
 				usuario.setTipo(rs.getString("tipoUsuario"));
+				selectLista.add(usuario);
 			}
 			rs.close();
 			statement.close();
@@ -124,37 +127,10 @@ public class UsuarioDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return usuario;
-	}
-	public Usuario subirLoginDao(String email) {
-		Usuario usuario = new Usuario();
-
-		String sql = "select * from usuario where email = ?";
-		try {
-			PreparedStatement statement = connection.prepareStatement(sql);
-			statement.setString(1, email);
-			ResultSet rs = statement.executeQuery();
-			while (rs.next()) {
-				usuario.setId(rs.getInt("idUsuario"));
-				usuario.setNome(rs.getString("nome"));
-				usuario.setSobrenome(rs.getString("sobrenome"));
-				usuario.setCpf(rs.getString("cpf"));
-				usuario.setSexo(rs.getString("sexo"));
-				usuario.setEmail(rs.getString("email"));
-				usuario.setEndereco(rs.getString("endereco"));
-				usuario.setSenha(rs.getString("senha"));
-				usuario.setTipo(rs.getString("tipoUsuario"));
-			}
-			rs.close();
-			statement.close();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return usuario;
+		return selectLista;
 	}
 
-	public  List<Usuario> listaDao() {
+	public List<Usuario> listaDao() {
 		List<Usuario> lista = new ArrayList<>();
 		String sql = "select * from usuario orderby";
 		System.out.println("caiu aqui no método lista dao!");
@@ -182,6 +158,34 @@ public class UsuarioDao {
 			e.printStackTrace();
 		}
 		return lista;
+	}
+
+	public Usuario subirLoginDao(String email) {
+		Usuario usuario = new Usuario();
+
+		String sql = "select * from usuario where email = ?";
+		try {
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, email);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				usuario.setId(rs.getInt("idUsuario"));
+				usuario.setNome(rs.getString("nome"));
+				usuario.setSobrenome(rs.getString("sobrenome"));
+				usuario.setCpf(rs.getString("cpf"));
+				usuario.setSexo(rs.getString("sexo"));
+				usuario.setEmail(rs.getString("email"));
+				usuario.setEndereco(rs.getString("endereco"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setTipo(rs.getString("tipoUsuario"));
+			}
+			rs.close();
+			statement.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return usuario;
 	}
 
 	public boolean existeEmailHeSenha(Usuario usuario) {
@@ -224,4 +228,32 @@ public class UsuarioDao {
 		return achou;
 	}
 
+	public Usuario selectUsuarioDao(int id) {
+		Usuario usuario = new Usuario();
+
+		String sql = "select * from usuario where idUsuario = ?";
+		try {
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setLong(1, id);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				usuario.setId(rs.getInt("idUsuario"));
+				usuario.setNome(rs.getString("nome"));
+				usuario.setSobrenome(rs.getString("sobrenome"));
+				usuario.setCpf(rs.getString("cpf"));
+				usuario.setSexo(rs.getString("sexo"));
+				usuario.setEmail(rs.getString("email"));
+				usuario.setEndereco(rs.getString("endereco"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setTipo(rs.getString("tipoUsuario"));
+			}
+			rs.close();
+			statement.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return usuario;
+
+	}
 }

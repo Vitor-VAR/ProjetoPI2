@@ -55,9 +55,9 @@ public class UsuarioBo {
 		return dao.listaDao();
 	}
 
-	public Usuario selectUsuarioIdBo(int id) throws ClassNotFoundException, SQLException {
+	public List<Usuario> selectUsuarioNomeBo(String nome) throws ClassNotFoundException, SQLException {
 		UsuarioDao usuDao = new UsuarioDao();
-		return usuDao.selectUsuarioDao(id);
+		return usuDao.searchUsuarioDao(nome);
 
 	}
 
@@ -82,6 +82,12 @@ public class UsuarioBo {
 	public void deleteUsuarioBo(Usuario usuario) throws ClassNotFoundException, SQLException {
 		UsuarioDao usuDao = new UsuarioDao();
 		usuDao.deleteUsuarioDao(usuario);
+		
+	}
+
+	public Usuario selectUsuarioIdBo(int id) {
+		UsuarioDao usuDao = new UsuarioDao();
+		return usuDao.selectUsuarioDao(id);
 	}
 
 }

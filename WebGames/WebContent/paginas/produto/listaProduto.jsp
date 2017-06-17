@@ -12,22 +12,23 @@
 <title>Lista de Produtos</title>
 </head>
 <body><font color="#FFFAFA">
-	<hl> <c:if
+	 <hl> <c:if
 			test="${ not empty usuarioLogado}">
 	Usuário logado: ${usuarioLogado.email}
-	<form action="/WebGames/login" method="post">
-				<div style="text-align: right;">
-					<input type="submit" name="acao" value="Deslogar" />
-				</div>
-				<hr>
-				<br> 
+	<div style="text-align: right;">
+		<p>
+				<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
+			</p>
+</div>
+			<hr>
+
 		</c:if>
 		
-	<h1>Lista Produto</h1>
+	<h1>LISTA DE JOGOS</h1>
 	<hr />
 		</font>
 	<div align="center">
-	<p>LISTA DE PRODUTOS</p>
+	<p>LISTA DE JOGOS</p>
 
 		<table border="2">
 			<tr>

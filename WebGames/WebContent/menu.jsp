@@ -8,34 +8,31 @@
 <title>Menu</title>
 </head>
 <body>
-<font color="#FFFAFA">
-<hl> <c:if test="${ not empty usuarioLogado}">
+	<font color="#FFFAFA"> <hl> <c:if
+			test="${ not empty usuarioLogado}">
 	Usuário logado: ${usuarioLogado.email}
-	<form action="/WebGames/usuario" method="post">
-		<input type="hidden" name="acao" value="Deslogar" />
+	<div style="text-align: right;">
 		<p>
-			<input type="submit" name="acao" value="Deslogar"
-				style="margin: -35px 0px 0px 90%" />
-		</p>
+				<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
+			</p>
+</div>
+			<hr>
 
-		<hr>
-	
-	</c:if>
-	<center>
-	<h1>---- Menu ----</h1>
-	<hr />
-	<br>
-	<br>
-	<br>
+		</c:if>
+		<center>
+			<h1>---- MENU ----</h1>
+			<hr />
+			<br> <br> <br>
 
-		<p>
-			<a href="paginas/usuario/UsuarioEscolha.jsp">Crud Usuário</a><br>
-			<br> <br>
-		<p>
-			<a href="paginas/produto/ProdutoEscolha.jsp">Crud Produto</a><br>
-			<br> <br>
-		<p>
-			<a href="paginas/relatorios/relatorioLucro.jsp">Relatórios</a><br></center></font>
+			<p>
+				<a href="paginas/usuario/UsuarioEscolha.jsp">GERENCIAR USUÁRIO</a><br>
+				<br> <br>
+			<p>
+				<a href="paginas/produto/ProdutoEscolha.jsp">GERENCIAR PRODUTO</a><br>
+				<br> <br>
+			<p>
+				<a href="paginas/relatorios/relatorioLucro.jsp">RELATÓRIOS</a><br>
+		</center></font>
 </body>
 <style>
 body {

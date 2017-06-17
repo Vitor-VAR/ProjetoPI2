@@ -7,6 +7,17 @@
 <title>Mensagem de sucesso</title>
 </head>
 <body>
+ <c:if
+			test="${ not empty usuarioLogado}">
+	Usuário logado: ${usuarioLogado.email}
+	<div style="text-align: right;">
+		<p>
+				<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
+			</p>
+</div>
+			<hr>
+
+		</c:if>
 <h2>Produto inserido com sucesso: ${produto.nome}</h2>
 
 
