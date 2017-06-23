@@ -2,14 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Lista de Produtos</title>
+<title>Carrinho</title>
 </head>
 <body>
 	<font color="#FFFAFA"> <hl> <c:if
@@ -19,21 +16,15 @@
 				<p>
 					<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
 				</p>
-
 			</div>
-			<center>
-				<p>
-					<a href="/WebGames/carrinho?acao=ListarCarrinho">Carrinho</a>
-				</p>
-			</center>
 			<hr>
 
 		</c:if>
 
-		<h1>LISTA DE JOGOS</h1>
+		<h1>CARRINHO DE COMPRAS</h1>
 		<hr /></font>
 	<div align="center">
-		<p>LISTA</p>
+		<p>LISTA DE ITENS</p>
 
 		<table border="2">
 			<tr>
@@ -42,13 +33,14 @@
 				<td>Gênero</td>
 				<td>Plataforma</td>
 				<td>Descrição</td>
-				<td>Valor</td>
+				<td>Preço</td>
 				<td>Quantidade</td>
-				<td>Opções</td>
+				<td>Opção</td>
+
 
 			</tr>
 
-			<c:forEach var="produto" items="${produtoLista}">
+			<c:forEach var="produto" items="${listaItem}">
 				<tr>
 
 					<td>${produto.nome}</td>
@@ -56,29 +48,24 @@
 					<td>${produto.plataforma}</td>
 					<td>${produto.descricao}</td>
 					<td>${produto.preco}</td>
-					<td>${produto.quantidade}</td>
+					<td>< <input type="number" name="quantidade" min="0"
+						max="${prod.quantidade}" />
 
-
+					</td>
 					<td><a
-						href="/WebGames/produto?escolha=opcaoAlterar&id=${produto.id}">Alterar</a>
-
-						<a
-						href="/WebGames/produto?escolha=Excluir&id=${produto.id}&nome=${produto.nome}&infoPagina=listar">Excluir</a>
-
-						<a href="/WebGames/carrinho?acao=AddNoCarrinho&id=${produto.id}">Comprar</a>
-
+						href="/WebGames/carrinho?acao=RemoverDoCarrinho&id=${produto.id}&infoPagina=listar">Remover</a>
 					</td>
 				</tr>
 			</c:forEach>
 		</table>
-		<c:if test="${fn:length(produtoLista) > 0}">
-   		Existem ${fn:length(produtoLista)} Produtos!
+		<c:if test="${fn:length(listaItem) > 0}">
+   		Existem ${fn:length(listaItem)} Produtos!
  		</c:if>
 		<br>
 	</div>
 	<h2>${mensagem}</h2>
 
-	<a href="paginas/produto/ProdutoEscolha.jsp">Voltar</a>
+	<a href="/WebGames/produto?escolha=Listar">Voltar</a>
 </body>
 <style>
 body {

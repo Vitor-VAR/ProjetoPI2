@@ -137,7 +137,7 @@ public class UsuarioServlet extends HttpServlet {
 				request.setAttribute("nome", str);
 				if (infoPagina.equals("listar")) {
 					request.getRequestDispatcher("/listaUsuario?escolha=Listar").forward(request, response);
-				} else if (infoPagina.equals("consultar")) {
+				} else if (infoPagina.equals("Consultar")) {
 					request.getRequestDispatcher("paginas/usuario/resultadoConsulta.jsp").forward(request, response);
 
 				}

@@ -8,19 +8,19 @@
 <title>Altera Produto</title>
 </head>
 <body>
-<font color="#FFFAFA"> <hl> <c:if
+	<font color="#FFFAFA"> <hl> <c:if
 			test="${ not empty usuarioLogado}">
 	Usuário logado: ${usuarioLogado.email}
 	<div style="text-align: right;">
-		<p>
-				<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
-			</p>
-</div>
+				<p>
+					<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
+				</p>
+			</div>
 			<hr>
 
 		</c:if>
-	<h1>Altera Produto</h1>
-	<hr /></font>
+		<h1>Altera Produto</h1>
+		<hr /></font>
 
 	<P>Id do produto setado: ${prod.id}</P>
 	<br>
@@ -29,15 +29,13 @@
 		<form action="/WebGames/produto" method="post">
 			<input type="hidden" name="acao" value="Alterar" /> <input
 				type="hidden" name="id" value="${prod.id}" />
-				
-			<li>Jogo:<br /> <input type="text" name="${prod.nome}" />
+
+			<li>Jogo:<br /> <input type="text" name="nome"
+				value="${prod.nome}" />
 			</li>
-			
-				
-			<c:choose><li>Gênero:<br /> 
-			 <select name="genero">
-			
-					<c:when test="${prod.genero.toString() eq luta}">
+
+
+			<li>Gênero:<br /> <select name="genero">
 					<option value="acao">Ação</option>
 					<option value="aventura">Aventura</option>
 					<option value="corrida">Corrida</option>
@@ -48,11 +46,7 @@
 					<option value="tiro">Tiro</option>
 			</select>
 			</li>
-			</c:when>
-				<c:otherwise>
-					
-				</c:otherwise>
-			</c:choose>
+
 			<li>Plataforma:<br /> <select name="plataforma">
 					<option value="pc">PC</option>
 					<option value="ps4">PS4</option>
@@ -67,20 +61,12 @@
 					cols="50"> ${prod.descricao}</textarea>
 			</li>
 			<li>Preço:<br /> <input type="number" step="5.00" min="0"
-				name="${prod.preco}" />
+				name="preco" value="${prod.preco}" />
 			</li>
 
 			<li>Quantidade:<br /> <input type="number" name="quantidade"
 				min="0" max="100" value="${prod.quantidade}" />
-			</li>
-
-			<li><label for="genero">Gênero:<br />
-			</label></li>
-			
-					
-				
-
-			<input type="submit" value="Alterar" /> <input type="reset"
+			</li> <input type="submit" value="Alterar" /> <input type="reset"
 				value="Limpar">
 		</form>
 	</ul>

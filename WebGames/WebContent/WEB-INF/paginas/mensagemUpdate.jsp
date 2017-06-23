@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Mesangem Delete</title>
+<title>Mesangem Update</title>
 </head>
 <body>
  <c:if
@@ -18,16 +18,18 @@
 			<hr>
 
 		</c:if>
-<h2>Usuário atualizado com sucesso: ${usuario.name}</h2>
+<h2>Usuário atualizado com sucesso: ${usuario.nome}</h2>
 
-<form action="/WebGames/usuario" method="post">
-				<input type="hidden" name="acao" value="Voltar">
-					<input type="button" value="Voltar">
-	</form>
+<c:if
+			test="${ not empty usuarioLogado}">
+			<center>
+				<a href="paginas/usuario/UsuarioEscolha.jsp">Menu Usuário</a><br>
+			</center>
+			</c:if>
 </body>
 		<style>
 body {
-	background-image: url(fundo.jpg);
+	background-image: url(/WebGames/imagens/fundo.jpg);
 	background-attachment: fixed;
 	background-size: 100%;
 	background-repeat: no-repeat;

@@ -36,7 +36,7 @@ System.out.println("não era para cair aqui!");
 			usu.setSenha(request.getParameter("senha"));
 			try {
 				if (bo.autenticaLogin(usu)) {
-					usu = bo.permissaoTipoUsuarioBo(usu);
+					usu = bo.permissaoBo(usu);
 					HttpSession session = request.getSession();
 					session.setAttribute("usuarioLogado", usu);
 					if (usu.getTipo().equals("Administrador") || usu.getTipo().equals("Funcionario")) {

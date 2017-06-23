@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Consulta Usuário</title>
 </head>
-<body> <hl> <c:if
+<body><font color="#FFFAFA"> <hl> <c:if
 			test="${ not empty usuarioLogado}">
 	Usuário logado: ${usuarioLogado.email}
 	<div style="text-align: right;">
@@ -21,7 +21,7 @@
 	
 		<center>
 			<h1>**** Consultar usuário ****</h1>
-			<hr />
+			<hr /></font>
 			<br> <br>
 			<form action="/WebGames/usuario" method="POST">
 				<input type="hidden" name="acao" value="Consultar" />

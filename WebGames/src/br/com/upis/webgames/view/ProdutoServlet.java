@@ -60,7 +60,7 @@ public class ProdutoServlet extends HttpServlet {
 			try {
 				prodBo.updateProdutoBo(produto);
 				request.setAttribute("produto", produto);
-				request.getRequestDispatcher("paginas/produto/mensagemUpdateProduto.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/paginas/mensagemUpdateProduto.jsp").forward(request, response);
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}

@@ -23,7 +23,7 @@ public class UsuarioBo {
 			return false;
 	}
 
-	public Usuario permissaoTipoUsuarioBo(Usuario usuario) throws ClassNotFoundException, SQLException {
+	public Usuario permissaoBo(Usuario usuario) throws ClassNotFoundException, SQLException {
 		UsuarioDao usuDao = new UsuarioDao();
 		usuario = usuDao.subirLoginDao(usuario.getEmail());
 		return usuario;

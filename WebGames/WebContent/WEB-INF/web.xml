@@ -46,5 +46,14 @@
 		<servlet-name>ProdutoServlet</servlet-name>
 		<url-pattern>/produto</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CarrinhoView</servlet-name>
+		<servlet-class>br.com.upis.webgames.view.CarrinhoView</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CarrinhoView</servlet-name>
+		<url-pattern>/carrinho</url-pattern>
+	</servlet-mapping>
 
 </web-app>

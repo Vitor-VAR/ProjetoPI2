@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>MesangemInsert</title>
 </head>
-<body>
+<body><font color="#FFFAFA">
 	 <c:if
 			test="${ not empty usuarioLogado}">
 	Usuário logado: ${usuarioLogado.email}
@@ -21,8 +21,8 @@
 		</c:if>
 
 	<h2>Usuário inserido com sucesso: ${usuario.nome}</h2>
-	<c:if test="${usuarioLogado.tipo eq Administrador}">
 
+<c:if test="${not empty usuarioLogado}">
 		<a href="paginas/usuario/UsuarioEscolha.jsp">Menu Usuário</a>
 		<br>
 		<br>
@@ -35,6 +35,7 @@
 		<a href="paginas/usuario/Login.jsp">Fazer login</a><br>
 	</center>
 	</c:if>
+	</font>
 </body>
 <style>
 body {

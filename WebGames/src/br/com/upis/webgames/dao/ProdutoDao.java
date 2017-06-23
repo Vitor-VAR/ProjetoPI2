@@ -53,8 +53,8 @@ public class ProdutoDao {
 	}
 
 	public static void updateProdutoDao(Produto produto) {
-		String sql = "update produto set idProduto = ? ,nome= ?,genero= ?, plataforma=?,descricao= ?"
-				+ ",preco= ?,quantidade= ? where idProduto= ?";
+		String sql = "update produto set idproduto = ? ,nome= ?,genero= ?, plataforma=?,descricao= ?"
+				+ ",preco= ?,quantidade= ? where idproduto= ?";
 
 		try {
 			PreparedStatement statement = connection.prepareStatement(sql);
@@ -65,7 +65,7 @@ public class ProdutoDao {
 			statement.setString(5, produto.getDescricao());
 			statement.setDouble(6, produto.getPreco());
 			statement.setLong(7, produto.getQuantidade());
-			
+			statement.setLong(8, produto.getId());
 
 			statement.execute();
 			statement.close();

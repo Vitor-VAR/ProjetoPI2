@@ -16,8 +16,14 @@
 			</p>
 </div>
 			<hr>
-
+<h2>Produto atualizado com sucesso: ${produto.nome}</h2>
 		</c:if>
+		<c:if
+			test="${ not empty usuarioLogado}">
+			<center>
+				<a href="paginas/produto/ProdutoEscolha.jsp">Menu Produto</a><br>
+			</center>
+			</c:if>
 
 </body>
 	<style>

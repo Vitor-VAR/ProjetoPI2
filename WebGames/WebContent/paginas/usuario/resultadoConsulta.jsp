@@ -9,6 +9,7 @@
 <title>Resultado da consulta</title>
 </head>
 <body>
+<font color="#FFFAFA">
 <c:if
 			test="${ not empty usuarioLogado}">
 	Usuário logado: ${usuarioLogado.email}
@@ -25,6 +26,8 @@
 	<br>
 	<br>
 	<br>
+	</font>
+	
 	<table border="2">
 		<tr>
 
@@ -57,10 +60,12 @@
 			</tr>
 		</c:forEach>
 	</table>
+
 	<c:if test="${fn:length(usuarioLista) > 0}">
    		Existem ${fn:length(usuarioLista)} Usuários!
  		</c:if> <br>
-	</div>
+
+	
 	<p>${nome}</p>
 	<br>
 	<br>

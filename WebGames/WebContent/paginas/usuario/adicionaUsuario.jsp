@@ -57,13 +57,13 @@
 			<hr>
 			<input type="reset" value="Limpar"> <br />
 			<c:if
-			test="${ usuarioLogado.tipo eq Cliente}">
+			test="${empty usuarioLogado}">
 			<center>
 				<a href="Login.jsp">Fazer login</a><br>
 			</center>
 			</c:if>
 			<c:if
-			test="${ usuarioLogado.tipo eq Administrador}">
+			test="${ not empty usuarioLogado}">
 			<center>
 				<a href="UsuarioEscolha.jsp">Menu Usuário</a><br>
 			</center>
