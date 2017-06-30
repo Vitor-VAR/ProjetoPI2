@@ -123,7 +123,7 @@ public class ProdutoDao {
 	}
 
 	public  List<Produto> listaDao() {
-		List<Produto> lista = new ArrayList<>();
+		List<Produto> selectListaProduto = new ArrayList<>();
 		String sql = "select * from produto orderby";
 		System.out.println("caiu aqui no método lista dao!");
 		try {
@@ -139,7 +139,7 @@ public class ProdutoDao {
 				produto.setDescricao((rs.getString("descricao")));
 				produto.setPreco(rs.getDouble("preco"));
 				produto.setQuantidade((rs.getInt("quantidade")));
-				lista.add(produto);
+				selectListaProduto.add(produto);
 			}
 			rs.close();
 			statement.close();
@@ -147,7 +147,7 @@ public class ProdutoDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return lista;
+		return selectListaProduto;
 	}
 
 	
@@ -186,6 +186,7 @@ public class ProdutoDao {
 				produto.setDescricao((rs.getString("descricao")));
 				produto.setPreco(rs.getDouble("preco"));
 				produto.setQuantidade((rs.getInt("quantidade")));
+				selectListaProduto.add(produto);
 			}
 			rs.close();
 			statement.close();

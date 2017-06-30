@@ -56,11 +56,12 @@ public class Produto {
 	public void setId(int idProduto) {
 		this.id = idProduto;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Produto [id= "+id+", Nome= "+nome+", Descricao= "+descricao+", Genero= "+genero+", Plataforma= "+plataforma+",Preço= "
 				+preco+",Quantidade= "+quant+"]";
 	}
+	
 	
 }

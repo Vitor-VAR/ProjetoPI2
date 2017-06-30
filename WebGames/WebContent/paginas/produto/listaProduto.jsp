@@ -23,7 +23,7 @@
 			</div>
 			<center>
 				<p>
-					<a href="/WebGames/carrinho?acao=ListarCarrinho">Carrinho</a>
+					<a href="/WebGames/carrinho?acao=ListaCarrinho">Carrinho</a>
 				</p>
 			</center>
 			<hr>

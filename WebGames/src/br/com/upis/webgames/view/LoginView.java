@@ -44,7 +44,7 @@ System.out.println("não era para cair aqui!");
 						dispatcher.forward(request, response);
 					} else if (usu.getTipo().equals("Cliente")) {
 						System.out.println(usu.getNome());
-						RequestDispatcher dispatcher = request.getRequestDispatcher("../produto?escolha=Listar");
+						RequestDispatcher dispatcher = request.getRequestDispatcher("/produto?escolha=Listar");
 						dispatcher.forward(request, response);
 					}
 				} else {

@@ -1,17 +1,17 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@page import="br.com.upis.webgames.entidade.ItemDeCompra"%>
+<%@page import="br.com.upis.webgames.entidade.Carrinho"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Carrinho</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Carrinho de Compras</title>
 </head>
 <body>
 	<font color="#FFFAFA"> <hl> <c:if
 			test="${ not empty usuarioLogado}">
-	Usuário logado: ${usuarioLogado.email}
+	UsuÃ¡rio logado: ${usuarioLogado.email}
 	<div style="text-align: right;">
 				<p>
 					<a href="/WebGames/login?acao=Deslogar">Deslogar</a>
@@ -19,53 +19,49 @@
 			</div>
 			<hr>
 
-		</c:if>
+		</c:if></font>
+	<h1>Carrinho de Compras!</h1>
+	<table border="1" cellpadding="2">
+		<tr>
+			<td bgcolor="#000088"><font color="white">Excluir</font></td>
+			<td bgcolor="#000088"><font color="white">Item</font></td>
+			<td bgcolor="#000088"><font color="white">QTD</font></td>
+			<td bgcolor="#000088"><font color="white">PreÃ§o UnitÃ¡rio</font></td>
+			<td bgcolor="#000088"><font color="white">Total Item</font></td>
+			<td bgcolor="#000088"><font color="white">+1</font></td>
+		</tr>
+		<%
+			//recupera os produtos do carrinho da sessao
+			Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
+			for (ItemDeCompra item : carrinho.getItens()) {
+		%>
+		<tr>
+			<td><a
+				href="carrinho?acao=RemoveDoCarrinho&id=<%=item.getProduto().getId()%>">X</td>
+			<td><%=item.getProduto().getNome()%></td>
+			<td><%=item.getQuantidade()%></td>
+			<td><%=item.getProduto().getPreco()%></td>
+			<td><%=item.getTotal()%></td>
+			<td><a
+				href="carrinho?acao=AddNoCarrinho&id=<%=item.getProduto().getId()%>">+</a></td>
+		</tr>
+		<%
+			}
+		%>
+	</table>
+	<strong>Valor Total: <%=carrinho.calculaTotal()%></strong>
+	<br />
+	<br>
+	<br>
+	<br>
+	<a href="/WebGames/produto?escolha=Listar">Continuar comprando</a>
+	<br />
+	<br>
+	<br>
+	<a href="/WebGames/venda?acao=realizarVenda">Realizar pagamento</a>
+	
 
-		<h1>CARRINHO DE COMPRAS</h1>
-		<hr /></font>
-	<div align="center">
-		<p>LISTA DE ITENS</p>
 
-		<table border="2">
-			<tr>
-
-				<td>Nome</td>
-				<td>Gênero</td>
-				<td>Plataforma</td>
-				<td>Descrição</td>
-				<td>Preço</td>
-				<td>Quantidade</td>
-				<td>Opção</td>
-
-
-			</tr>
-
-			<c:forEach var="produto" items="${listaItem}">
-				<tr>
-
-					<td>${produto.nome}</td>
-					<td>${produto.genero}</td>
-					<td>${produto.plataforma}</td>
-					<td>${produto.descricao}</td>
-					<td>${produto.preco}</td>
-					<td>< <input type="number" name="quantidade" min="0"
-						max="${prod.quantidade}" />
-
-					</td>
-					<td><a
-						href="/WebGames/carrinho?acao=RemoverDoCarrinho&id=${produto.id}&infoPagina=listar">Remover</a>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
-		<c:if test="${fn:length(listaItem) > 0}">
-   		Existem ${fn:length(listaItem)} Produtos!
- 		</c:if>
-		<br>
-	</div>
-	<h2>${mensagem}</h2>
-
-	<a href="/WebGames/produto?escolha=Listar">Voltar</a>
 </body>
 <style>
 body {
