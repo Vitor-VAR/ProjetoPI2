@@ -35,7 +35,7 @@ public class VendaServlet extends HttpServlet {
 		ProdutoBo produtoBo = new ProdutoBo();
 		Usuario usuario = new Usuario();
 		UsuarioBo ususarioBo =new UsuarioBo();
-		VendaBo venda =new VendaBo()
+		VendaBo venda =new VendaBo();
 		
 		acao =request.getParameter("acao");
 		
